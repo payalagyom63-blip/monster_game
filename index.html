@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>GAME</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+        rel = "stylesheet"
+    />
+    <link rel = "stylesheet" href = "style.css"/>
+    <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js" defer></script>
+    <script src = "app.js" defer></script>
+</head>
+    <body>
+        <header>
+            <h1>Monster Slayer</h1>
+        </header>
+        <div id = "game">
+            <section id = "monster" class = "container">
+                <h2>Monster Health</h2>
+                <div class = "healthbar">
+                    <div class = "healthbar_value" :style="monsterBarStyles"></div>
+                </div>
+            </section>
+            <section id = "player" class = "container">
+                <h2>Player Health </h2>
+                <div class = "healthbar">
+                    <div class = "healthbar_value" :style="playerBarStyles"></div>
+                </div>
+            </section> 
+            <section class = "container" v-if = "winner">
+                 <h2>GAME OVER</h2><!--//MUST SHOW IN ITHER DRAW OR GAME LOST -->
+                <h3 v-if = "winner === 'monster'">YOU LOST</h3>
+                <h3 v-else-if = "winner === 'player'">YOU WON!</h3>
+                <h3 v-else>OH! IT IS A DRAW!</h3>
+                <button @click="startGame">START NEW GAME</button>
+
+            </section>
+            <section id = "controls" v-else>
+                <button @click="attackMonster">ATTACK</button>
+                <button :disabled="mayUseSpecialAttack"  @click = "specialAttackMonster">SPECIAL ATTACK</button>
+                <button @click = "healPlayer">HEAL</button>
+                <button @click = "surrender">SURRENDER</button>
+            </section>
+            <section id = "log" class = "container">
+                <h2>Battle Log</h2>
+                <ul>
+                    <!--  in order to write semantically correct we need to use v- for in the list-->
+                    <li v-for = " logMessage in logMessages"> {{logMessage.actionBy}} - {{logMessage.actionType}} - {{logMessage.actionValue}}
+                    </li>
+                </ul>
+
+            </section>
+        </div>
+    </body>
+
+</html>
