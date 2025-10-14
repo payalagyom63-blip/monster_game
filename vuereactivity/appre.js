@@ -18,10 +18,28 @@ const app = Vue.createApp({
 
         },
     },
+    beforeCreate(){
+        console.log('beforeCreate()');
+    },
+    created(){
+        console.log('created()');
+    },
+    beforeMount(){
+        console.log('beforeMount()');
+    },
+    mounted(){
+        console.log('mounted()');
+    },
+    beforeUpdate(){
+        console.log('beforeUpdate()');
+    },
+    updated(){
+        console.log('updated()');
+    }
 });
 app.mount('#app');
 
-/*
+
 const data = {
     message: 'hello!',
     text: 'ophelia',
@@ -49,8 +67,8 @@ const handler = {
 const proxy = new Proxy(data, handler);
 proxy.longMessage = 'bello!!!';
 
-console.log(proxy.longMessage);
-*/
+// console.log(proxy.longMessage);
+
 
 
 //creating more than one vue app in a single page, and each vue app works standalone
